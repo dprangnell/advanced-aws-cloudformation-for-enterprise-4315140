@@ -5,7 +5,7 @@ Resources:
     MyBucket:
         Type: AWS::S3::Bucket
         Properties:
-            BucketName: bmr-some-bucket
+            BucketName: dpp-wait-condition-bucket-demo-1228
     MyWaitCondition:
       Type: AWS::CloudFormation::WaitCondition
       Properties:

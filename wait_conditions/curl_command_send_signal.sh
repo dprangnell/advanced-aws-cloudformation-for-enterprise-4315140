@@ -1,1 +1,1 @@
-curl -T ./wait_signal_payload.json "URL_HERE"
+curl -T ./wait_signal_payload.json "https://cloudformation-waitcondition-us-east-1.s3.amazonaws.com/arn%3Aaws%3Acloudformation%3Aus-east-1%3A072567060613%3Astack/exWaitCond/d23b1540-a59d-11ee-9e12-0a9aa604e5b9/MyWaitHandle?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20231228T162623Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86399&X-Amz-Credential=AKIA6L7Q4OWT3JRXU3BZ%2F20231228%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=3b18ee4cfd4416ec76e708e60a6519046b2925c8d89a72d3462795d53cc90882"

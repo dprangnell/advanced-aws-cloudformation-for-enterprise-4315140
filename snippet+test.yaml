@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: |
+  Example of Equals and conditions
+  
+Parameters:
+  environment:
+    Description: "What environment is this?"
+    Type: String
+    AllowedValues:
+      - development
+      - qa
+      - uat
+      - production
+    Default: 'development'
+  
+Conditions:
+  IsProduction: !Equals [ !Ref environment, 'production' ]
+  
+Resources:
+  SecurityGroupSSHFromWorld:
+    Type: AWS::EC2::SecurityGroup
+    Condition: IsProduction
+    Properties:
+      GroupDescription: Allows port 22 from the world
+  
+Transform:
+  
+Outputs:

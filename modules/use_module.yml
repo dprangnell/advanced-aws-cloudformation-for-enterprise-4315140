@@ -5,13 +5,18 @@ Parameters:
   Subnet:
     Description: Subnet in which to place the resources
     Type: AWS::EC2::Subnet::Id
-    # this type is not that helpful, since it just shows IDs
+    Default: "subnet-08f65c2df70e1489a"
+  VPC:
+    Description: AWS::EC2::VPC::Id
+    Type: AWS::EC2::VPC::Id
+    Default: "vpc-0d7d69264be772954"
 Resources:
   WebStackResource:
-    Type: Brandon::Demo::WebStack::MODULE
+    Type: DavidP::Demo::WebStack::MODULE
     Properties:
       Subnet: !Ref Subnet
       InstanceType: t3.micro
+      VPC: !Ref VPC
 Outputs:
   IPAddress:
     Description: Fetched from module outputs

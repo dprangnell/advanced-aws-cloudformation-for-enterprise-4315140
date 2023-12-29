@@ -12,35 +12,34 @@ Parameters:
   InstanceType:
     Description: The instance type for the Launch Config
     Type: String
-    Default: t2.micro
+    Default: t3.micro
     AllowedValues:
-    - t2.nano
-    - t2.micro
-    - t2.small
-    - t2.medium
-    - t2.large
+    - t3.nano
+    - t3.micro
+    - t3.small
+    - t3.medium
+    - t3.large
   AMI:
     Description: a reference to the AMI you want
     Type: AWS::EC2::Image::Id
     Default: ami-0b0dcb5067f052a63
-  InstanceName:
-    Description: The Name tag that will get applied to the instance
-    Type: String
-    Default: NginxDemo
 Resources:
   SecurityGroupHTTPFromWorld:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: Allows port 80 from the world
-      GroupName: HTTPFromWorld
+      GroupName: !Sub 'HTTPFromWorld-${AWS::StackName}'
       # If we do not specify egress, the default 
       # "all traffic" egress rule will be created.
       SecurityGroupIngress: 
         - IpProtocol: tcp
-          FromPort: 22
-          ToPort: 22
+          FromPort: 80
+          ToPort: 80
           CidrIp: 0.0.0.0/0
       VpcId: !Ref VPC
+      Tags:
+        - Key: Name
+          Value: HTTPFromWorld
   MyInstance:
     Type: AWS::EC2::Instance
     Properties:
@@ -58,4 +57,8 @@ Resources:
         Ref: Subnet
       Tags:
         - Key: Name
-          Value: !Ref InstanceName          
+          Value: MyNginxInstance
+Outputs:
+  InstanceIP:
+    Description: The public IP of the instance
+    Value: !GetAtt MyInstance.PublicIp

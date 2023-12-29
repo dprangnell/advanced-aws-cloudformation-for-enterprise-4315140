@@ -11,7 +11,7 @@ Resources:
       Parameters:
         OpenPort:
           Ref: OpenPort
-      TemplateURL: ./security.yml
+      TemplateURL: https://s3.us-east-1.amazonaws.com/dpp-cfn-templates-for-nested-stacks/1d82c9fd3a0f79a09ed2672015b97466.template
   ComputeStack:
     Type: AWS::CloudFormation::Stack
     Properties:
@@ -20,7 +20,7 @@ Resources:
           Fn::GetAtt:
           - SecurityStack
           - Outputs.SecurityGroupId
-      TemplateURL: ./compute.yml
+      TemplateURL: https://s3.us-east-1.amazonaws.com/dpp-cfn-templates-for-nested-stacks/a66b7ec4a5535c923a213d086e63b232.template
 Outputs:
   InstanceIP:
     Description: Get to nginx here!
